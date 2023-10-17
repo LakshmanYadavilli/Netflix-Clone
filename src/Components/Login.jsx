@@ -2,19 +2,92 @@ import React, { useState, useRef } from "react";
 import Header from "./Header";
 import NetflixBg from "../assets/Netflix-Bg.png";
 import { userValdiation } from "../utils/userValdiation";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 // import { useState } from "react";
 
 const Login = () => {
   let [isSignIn, setIsSignIn] = useState(true);
   let [errMsg, setErrMsg] = useState(null);
   let isSignInFn = () => setIsSignIn(!isSignIn);
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   let email = useRef(null);
   let password = useRef(null);
+  let name = useRef(null);
+
+  const valdiationFn = () => {
+    if (email.current.value !== "" && password.current.value !== "") {
+      console.log("valFn");
+      let res = userValdiation(email.current.value, password.current.value);
+      setErrMsg(res);
+    }
+    if (!errMsg) {
+      if (!isSignIn) {
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            updateProfile(user, { displayName: name.current.value })
+              .then(() => {
+                let { uid, email, displayName } = auth.currentUser;
+
+                dispatch(addUser({ uid, email, displayName }));
+
+                navigate("/browse", { replace: true });
+              })
+              .catch((e) => console.error(e));
+            // console.log({ user });
+
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrMsg(errorCode + "-" + errorMessage);
+            clg({ error: errorCode + "-" + errorMessage });
+            // ..
+          });
+      } else {
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log({ user });
+
+            navigate("/browse", { replace: true });
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log({ error: errorCode + "-" + errorMessage });
+            setErrMsg(errorCode + "-" + errorMessage);
+          });
+      }
+    }
+  };
   return (
     <div>
-      <Header />
+      <Header isSignIn={isSignIn} />
       <div className="absolute">
-        <img src={NetflixBg} alt="bg" />
+        <img className="w-screen h-screen" src={NetflixBg} alt="bg" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -25,6 +98,7 @@ const Login = () => {
         </h1>
         {!isSignIn && (
           <input
+            ref={name}
             className="py-2 m-2 w-full bg-gray-700 px-1 rounded-lg"
             type="text"
             placeholder="Enter Fullname"
@@ -49,16 +123,7 @@ const Login = () => {
         {errMsg !== null && <p className="text-red-700">*{errMsg}</p>}
         <button
           className="py-2  m-2 bg-red-600 w-full rounded-lg"
-          onClick={() => {
-            if (email.current.value !== "" && password.current.value !== "") {
-              console.log("valFn");
-              let res = userValdiation(
-                email.current.value,
-                password.current.value
-              );
-              setErrMsg(res);
-            }
-          }}
+          onClick={valdiationFn}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
