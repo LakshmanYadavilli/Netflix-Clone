@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Header from "./Header";
 import NetflixBg from "../assets/Netflix-Bg.png";
 import { userValdiation } from "../utils/userValdiation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
 import {
@@ -26,7 +26,6 @@ const Login = () => {
 
   const valdiationFn = () => {
     if (email.current.value !== "" && password.current.value !== "") {
-      console.log("valFn");
       let res = userValdiation(email.current.value, password.current.value);
       setErrMsg(res);
     }
@@ -46,7 +45,7 @@ const Login = () => {
 
                 dispatch(addUser({ uid, email, displayName }));
 
-                navigate("/browse", { replace: true });
+                // navigate("/browse", { replace: true });
               })
               .catch((e) => console.error(e));
             // console.log({ user });
@@ -69,15 +68,14 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log({ user });
 
-            navigate("/browse", { replace: true });
+            // navigate("/browse", { replace: true });
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log({ error: errorCode + "-" + errorMessage });
+
             setErrMsg(errorCode + "-" + errorMessage);
           });
       }
