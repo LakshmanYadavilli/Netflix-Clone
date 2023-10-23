@@ -4,14 +4,14 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 const TrailerDetails = () => {
   const trailerDetails = useSelector((state) => state.movies.nowPlayingMovies);
-  console.log({ trailerDetails });
+  // console.log({ trailerDetails });
   return (
-    <div className="absolute z-10  text-white p-10 bg-gradient-to-r from-black w-screen aspect-video">
+    <div className="absolute z-10  text-white p-10 bg-gradient-to-r from-black w-screen h-screen">
       <div className="absolute top-60">
         <h1 className="text-4xl font-bold mb-2">
           {trailerDetails && trailerDetails[0].title}
         </h1>
-        <p className="w-1/4 mb-2">
+        <p className="w-1/4 mb-2 text-xs">
           {trailerDetails && trailerDetails[0].overview}
         </p>
         <div className="flex ">

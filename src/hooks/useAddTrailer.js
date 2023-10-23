@@ -16,7 +16,7 @@ const useAddTrailer = (id) => {
           ? dispatch(addTrailer(arr[0]))
           : dispatch(addTrailer(response.results[0]));
 
-        console.log(response.results);
+        // console.log(response.results);
       })
       .catch((err) => console.error(err));
   };

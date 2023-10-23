@@ -69,7 +69,7 @@ const Login = () => {
             // Signed in
             const user = userCredential.user;
 
-            // navigate("/browse", { replace: true });
+            navigate("/browse");
             // ...
           })
           .catch((error) => {
