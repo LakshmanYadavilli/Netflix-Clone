@@ -8,13 +8,17 @@ const TrailerContainer = () => {
   const trailer = useSelector((state) => state.movies.trailer);
 
   return (
-    <div className="w-screen absolute h-screen">
+    <div className=" w-screen h-screen absolute md:-top-0 xs:-top-28 sm:-top-24 ">
       {trailer && (
         <iframe
           className="w-screen h-screen"
           src={`https://www.youtube.com/embed/${trailer.key}?si=F7BX0ODbgzhTAOfO&autoplay=1&mute=1`}
           title="YouTube video player"
-          frameBorder="0"
+          marginWidth={0}
+          marginHeight={0}
+          frameBorder={0}
+          hSpace={0}
+          vSpace={0}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       )}

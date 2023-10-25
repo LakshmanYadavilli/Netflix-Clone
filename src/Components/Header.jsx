@@ -49,17 +49,32 @@ const Header = () => {
         // An error happened.
       });
   };
+  const handleSearch = () => {
+    navigate("/search");
+  };
 
   return (
     <div className="absolute w-full h-28 px-8 py-2 bg-gradient-to-b from-black z-20 flex justify-between items-center">
-      <img className="w-44 " src={logo} alt="logo" />
+      <img
+        className="w-44 xs:w-36 xs:h-16 xs:relative xs:-top-4 "
+        src={logo}
+        alt="logo"
+      />
       {user && (
-        <button
-          className="text-white bg-blue-600 w-28 h-10 rounded"
-          onClick={handleLogOut}
-        >
-          Log Out
-        </button>
+        <div className="">
+          <button
+            className="mr-4 text-white  w-28 h-32  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded md:bg-blue-600 xs:bg-red-700  sm:bg-green-700 "
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+          <button
+            className="text-white  w-28 h-32  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded md:bg-blue-600 xs:bg-red-700  sm:bg-green-700 "
+            onClick={handleLogOut}
+          >
+            Log Out
+          </button>
+        </div>
       )}
     </div>
   );

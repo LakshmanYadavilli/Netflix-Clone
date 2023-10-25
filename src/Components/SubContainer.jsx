@@ -10,8 +10,10 @@ const SubContainer = () => {
   // console.log({ movies: movies.popularMovies });
 
   return (
-    <div className="bg-black pl-2 pr-2 w-screen">
-      <div className="relative -top-32 z-50">
+    <div className=" absolute xs:top-96 sm:top-[345px] md:top-[480px] bg-black pl-2 pr-2 w-screen z-50">
+      <div className="relative xs:-top-36 sm:-top-[64px]">
+        <MovieList data={movies?.trendingMovies} type={"Trending Movies"} />
+        <MovieList data={movies?.trendingTvShows} type={"Trending TV Series"} />
         <MovieList
           data={movies?.nowPlayingMovies}
           type={"Now Playing Movies"}
