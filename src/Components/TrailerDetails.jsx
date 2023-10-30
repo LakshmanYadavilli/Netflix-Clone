@@ -23,22 +23,24 @@ const TrailerDetails = ({ title, overview }) => {
         <p className="    text-ellipsis overflow-hidden whitespace-wrap xs:w-2/4 xs:h-16 md:h-28 xs:text-[10px] sm:text-sm md:text-lg  md:w-2/5 ">
           {overview ? overview : trailerDetails && trailerDetails[0].overview}
         </p>
-        <div className="flex mt-4 ">
-          <button
-            className="bg-white text-black xs:w-20 sm:w-24 xs:h-5 sm:h-7 xs:text-xs sm:text-sm w-28 h-10 rounded mr-2 flex justify-center items-center hover:opacity-70"
-            onClick={navigateFn}
-          >
-            <BsFillPlayFill />
-            Play
-          </button>
-          <button
-            className="bg-gray-400 xs:w-20  sm:w-24 xs:h-5 sm:h-7 xs:text-xs sm:text-sm w-28 h-10 rounded bg-opacity-50 flex justify-center items-center hover:opacity-70"
-            onClick={navigateFn}
-          >
-            <AiOutlineInfoCircle />
-            More Info
-          </button>
-        </div>
+        {location.pathname === "/browse" && (
+          <div className="flex mt-4 ">
+            <button
+              className="bg-white text-black xs:w-20 sm:w-24 xs:h-5 sm:h-7 xs:text-xs sm:text-sm w-28 h-10 rounded mr-2 flex justify-center items-center hover:opacity-70"
+              onClick={navigateFn}
+            >
+              <BsFillPlayFill />
+              Play
+            </button>
+            <button
+              className="bg-gray-400 xs:w-20  sm:w-24 xs:h-5 sm:h-7 xs:text-xs sm:text-sm w-28 h-10 rounded bg-opacity-50 flex justify-center items-center hover:opacity-70"
+              onClick={navigateFn}
+            >
+              <AiOutlineInfoCircle />
+              More Info
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

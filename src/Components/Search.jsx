@@ -4,6 +4,8 @@ import { options, imgCDN } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Audio } from "react-loader-spinner";
+import Header from "./Header";
+import { AiOutlineHome } from "react-icons/ai";
 const Search = () => {
   const navigate = useNavigate();
   const [key, setKey] = useState("");
@@ -48,7 +50,7 @@ const Search = () => {
   return (
     <div className="bg-red-700 w-screen h-screen text-center">
       {loader && (
-        <div className="absolute top-1/2 w-[20vw] left-[40vw] flex justify-center items-center">
+        <div className="absolute z-50 top-1/2 w-[20vw] left-[40vw] flex justify-center items-center">
           <Audio
             height="80"
             width="80"
@@ -60,6 +62,11 @@ const Search = () => {
           />
         </div>
       )}
+      <AiOutlineHome
+        className="cursor-pointer text-white mr-4 xs:text-xl sm:text-2xl  absolute top-6 right-6"
+        onClick={() => navigate("/browse")}
+      />
+
       {key.length === 0 && searchArr?.length == 0 && (
         <h className="absolute top-[48vh] left-[25vw] w-1/2  text-2xl font-bold ">
           Enter the key to Search Movie/Series
