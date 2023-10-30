@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "../assets/Netflix-logo.png";
+import { AiOutlineHome } from "react-icons/ai";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-const Header = () => {
+const Header = ({ id }) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   let user = useSelector((state) => state.user);
-
+  let location = useLocation();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -23,7 +25,12 @@ const Header = () => {
         const { uid, email, displayName } = user;
 
         dispatch(addUser({ uid, email, displayName }));
-        navigate("/browse");
+
+        if (from !== undefined) {
+          navigate("/searched/movie", { state: { id } });
+        } else {
+          navigate("/browse");
+        }
 
         // ...
       } else {
@@ -60,16 +67,25 @@ const Header = () => {
         src={logo}
         alt="logo"
       />
+
       {user && (
-        <div className="">
+        <div className="flex justify-between items-center">
+          {/* <button>Home</button> */}
+          {location.pathname !== "/browse" && (
+            <AiOutlineHome
+              className="cursor-pointer text-white mr-4 xs:text-xl sm:text-2xl  relative -top-4"
+              onClick={() => navigate("/browse")}
+            />
+          )}
           <button
-            className="mr-4 text-white  w-28 h-32  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded md:bg-blue-600 xs:bg-red-700  sm:bg-green-700 "
+            className="mr
+            -4 text-white  w-28 h-32 mr-2  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded bg-red-700  "
             onClick={handleSearch}
           >
             Search
           </button>
           <button
-            className="text-white  w-28 h-32  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded md:bg-blue-600 xs:bg-red-700  sm:bg-green-700 "
+            className="text-white  w-28 h-32  xs:w-12 xs:text-xs xs:h-6 xs:relative xs:-top-4 rounded bg-red-700  "
             onClick={handleLogOut}
           >
             Log Out
