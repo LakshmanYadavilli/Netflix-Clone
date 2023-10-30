@@ -26,7 +26,11 @@ const Header = ({ id }) => {
 
         dispatch(addUser({ uid, email, displayName }));
 
-        navigate("/browse");
+        if (location.pathname === "/searched/movie") {
+          navigate("/searched/movie", { state: { id } });
+        } else {
+          navigate("/browse");
+        }
 
         // ...
       } else {
