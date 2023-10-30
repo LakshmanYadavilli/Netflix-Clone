@@ -25,8 +25,8 @@ const SearchedMovie = () => {
   console.log({ id });
 
   return (
-    <div>
-      <div>
+    <div className="h-screen">
+      <div className="h-[60vh]">
         <Header id={id} />
         <TrailerContainer
           id={id}
@@ -38,7 +38,7 @@ const SearchedMovie = () => {
           overview={movieDetails?.overview}
         />
       </div>
-      <div className="flex justify-around absolute xs:top-[55vh] sm:top-[60vh] md:top-[80vh] xs:h-60 z-50 bg-red-500 w-screen p-4">
+      <div className="flex justify-around absolute xs:top-[55vh] sm:top-[60vh] md:top-[80vh] h-[40vh] z-50 bg-red-500 w-screen p-4">
         <div>
           <h1>
             <span className=" xs:text-xl text-2xl font-bold">
