@@ -26,11 +26,7 @@ const Header = ({ id }) => {
 
         dispatch(addUser({ uid, email, displayName }));
 
-        if (from !== undefined) {
-          navigate("/searched/movie", { state: { id } });
-        } else {
-          navigate("/browse");
-        }
+        navigate("/browse");
 
         // ...
       } else {
