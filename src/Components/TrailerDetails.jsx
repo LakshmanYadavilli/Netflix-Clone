@@ -14,10 +14,11 @@ const TrailerDetails = ({ title, overview }) => {
     trailerDetails &&
     navigate("/searched/movie", { state: { id: trailerDetails[0].id } });
   // console.log({ trailerDetails });
+  //xs:absolute xs:top-40 sm:absolute sm:top-32  md:absolute md:top-20
   return (
-    <div className="absolute z-10  text-white p-10 bg-gradient-to-r from-black w-screen h-screen">
-      <div className=" xs:absolute xs:top-20 sm:absolute sm:top-32  md:absolute md:top-48">
-        <h1 className="xs:text-lg font-bold md:text-4xl font-bold mb-2">
+    <div className="absolute z-10 top-0  text-white p-10 bg-gradient-to-r from-black w-screen h-screen">
+      <div className=" relative xs:top-16 md:top-40  ">
+        <h1 className="xs:text-sm font-bold md:text-4xl  mb-2">
           {title ? title : trailerDetails && trailerDetails[0].title}
         </h1>
         <p className="    text-ellipsis overflow-hidden whitespace-wrap xs:w-2/4 xs:h-16 md:h-28 xs:text-[10px] sm:text-sm md:text-lg  md:w-2/5 ">

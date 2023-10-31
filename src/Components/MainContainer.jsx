@@ -4,7 +4,7 @@ import TrailerDetails from "./TrailerDetails";
 
 const MainContainer = () => {
   return (
-    <div className="absolute top-0 h-screen w-screen">
+    <div className="absolute   top-0 h-screen w-screen">
       <TrailerContainer />
       <TrailerDetails />
     </div>
