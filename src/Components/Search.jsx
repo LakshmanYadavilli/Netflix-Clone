@@ -20,6 +20,7 @@ const Search = () => {
   }, [key]);
   const searchMovieFn = (movieName) => {
     if (movieName.length === 0) return;
+
     if (id !== 0) {
       clearTimeout(id);
     }
@@ -43,7 +44,7 @@ const Search = () => {
           console.error(err);
           setLoader(false);
         });
-    }, 3000);
+    }, 1000);
     setId(timerId);
   };
 
@@ -68,7 +69,7 @@ const Search = () => {
       />
 
       {key.length === 0 && searchArr?.length == 0 && (
-        <h className="absolute top-[48vh] left-[25vw] w-1/2  text-2xl font-bold ">
+        <h className="absolute top-[40vh] left-[25vw] w-1/2  text-2xl font-bold ">
           Enter the key to Search Movie/Series
         </h>
       )}
@@ -83,19 +84,20 @@ const Search = () => {
         value={key}
         onChange={(e) => {
           setKey(e.target.value);
-
+          setSearchArr(null);
           setMsg(false);
+
           searchMovieFn(e.target.value);
         }}
         placeholder="Search the Movies/Series"
       />
-      <div className="flex  flex-wrap w-screen">
+      <div className="flex  flex-wrap w-screen bg-red-700 p-2 m-2">
         {searchArr?.map((i) => {
           if (!i.poster_path) return;
           return (
             <div
               key={i.poster_path}
-              className="w-[19%] m-[.5%] bg-yellow-500 rounded  hover:scale-y-90 hover:scale-x-90 cursor-pointer  "
+              className="w-[19%] m-[.5%] rounded  hover:scale-y-90 hover:scale-x-90 cursor-pointer  "
               onClick={() =>
                 navigate("/searched/movie", {
                   state: {

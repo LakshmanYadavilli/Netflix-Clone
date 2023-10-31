@@ -7,4 +7,4 @@ export const options = {
   },
 };
 
-export const imgCDN = "https://image.tmdb.org/t/p/original";
+export const imgCDN = "https://image.tmdb.org/t/p/w220_and_h330_face/";

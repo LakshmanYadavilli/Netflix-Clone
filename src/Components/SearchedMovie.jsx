@@ -25,7 +25,7 @@ const SearchedMovie = () => {
   console.log({ id });
 
   return (
-    <div className="h-screen">
+    <div className="h-auto bg-red-700">
       <div className="h-[10vh]">
         <Header id={id} />
         <TrailerContainer
