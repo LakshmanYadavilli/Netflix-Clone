@@ -16,8 +16,8 @@ const TrailerDetails = ({ title, overview }) => {
   // console.log({ trailerDetails });
   //xs:absolute xs:top-40 sm:absolute sm:top-32  md:absolute md:top-20
   return (
-    <div className="absolute z-10 top-0  text-white p-10 bg-gradient-to-r from-black w-screen h-screen">
-      <div className=" relative xs:top-16 md:top-40  ">
+    <div className="absolute z-10  top-0 text-white p-10 bg-gradient-to-r from-black w-full h-full">
+      <div className=" absolute xs:bottom-[70%] sm:bottom-[64%] md:bottom-[50%] ">
         <h1 className="xs:text-sm font-bold md:text-4xl  mb-2">
           {title ? title : trailerDetails && trailerDetails[0].title}
         </h1>

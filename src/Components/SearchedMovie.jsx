@@ -38,7 +38,7 @@ const SearchedMovie = () => {
           overview={movieDetails?.overview}
         />
       </div>
-      <div className="flex justify-around absolute xs:h-[50%] xs:top-[58%] sm:top-[60vh] md:top-[80vh] h-[50vh] z-50 bg-red-500 w-screen p-4">
+      <div className="flex justify-around absolute xs:h-[50%] xs:top-[50%] sm:top-[60vh] md:top-[65vh] h-[50vh] z-50 bg-red-500 w-screen p-4">
         <div>
           <h1>
             <span className=" xs:text-xl text-2xl font-bold">

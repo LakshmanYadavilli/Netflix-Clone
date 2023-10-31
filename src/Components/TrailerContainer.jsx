@@ -16,7 +16,7 @@ const TrailerContainer = ({ id, title, image }) => {
   const trailer = useSelector((state) => state.movies.trailer);
 
   return (
-    <div className=" w-full h-screen xs:-top-32 md:top-0 relative  ">
+    <div className=" w-full h-screen  md:top-0 relative z-0 ">
       {trailer && (
         // <iframe
         //   className="absolute xs:top-0 mt-0 md:top-0 top-0 left-0 right-0 bottom-0 w-full h-full"
@@ -30,7 +30,7 @@ const TrailerContainer = ({ id, title, image }) => {
         //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         // ></iframe>
         <ReactPlayer
-          className="absolute  top-0 left-0 right-0 bottom-0"
+          className="absolute  xs:-top-52 md:top-0 left-0 right-0 bottom-0"
           muted={true}
           loop={true}
           playing={true}
