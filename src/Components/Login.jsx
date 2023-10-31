@@ -85,14 +85,14 @@ const Login = () => {
     }
   };
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen flex-col justify-center items-center">
       <Header isSignIn={isSignIn} />
       <div className="absolute">
         <img className="w-screen h-screen" src={NetflixBg} alt="bg" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="block absolute xs:w-2/4 sm:w-[40%] w-1/4 xs:mt-[28vh] sm:mt-[27vh] md:mt-[24vh] xs:h-[44vh] sm:h-[46vh] md:h-[52vh]  p-6 bg-black  mx-auto left-0 right-0 text-white bg-opacity-80"
+        className="block absolute xs:w-2/4 sm:w-[40%] w-1/4 xs:mt-[28vh] sm:mt-[27vh] md:mt-[24vh] h-auto p-6 bg-black  mx-auto left-0 right-0 text-white bg-opacity-80"
       >
         <h1 className=" xs:text-lg sm:text-2xl text-2xl font-bold">
           {isSignIn ? "Sign In" : "Sign Up"}
@@ -100,7 +100,7 @@ const Login = () => {
         {!isSignIn && (
           <input
             ref={name}
-            className={`py-2 m-2  bg-gray-700 px-1 rounded-lg xs:h-6 xs:w-[80%]  xs:text-xs ${smStyles} ${mdStyles} `}
+            className={`py-2 m-2  bg-gray-700 px-1 rounded-lg xs:h-6 xs:w-[90%]  xs:text-xs ${smStyles} ${mdStyles} `}
             type="text"
             placeholder="Enter Fullname"
           />
@@ -108,7 +108,7 @@ const Login = () => {
 
         <input
           ref={email}
-          className={`py-2 m-2 w-full bg-gray-700 px-1 rounded-lg xs:h-6 xs:w-[90%] ${smStyles} ${mdStyles} xs:text-xs`}
+          className={`py-2 m-2  bg-gray-700 px-1 rounded-lg xs:h-6 xs:w-[90%] ${smStyles} ${mdStyles} xs:text-xs`}
           type="text"
           placeholder="Enter Email"
           required
